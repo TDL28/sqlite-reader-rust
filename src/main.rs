@@ -134,6 +134,16 @@ fn get_columns(db: &sqlite::Connection, table_name: &str) -> Vec<String> {
 
 fn get_table_content(db: &sqlite::Connection, table_name: &String, columns: &Vec<String>) -> Vec<Vec<String>> {
     let mut rows = Vec::new();
+    
+    // if columns is a vec of { '*' }, get all column names
+    let columns = if columns.len() == 1 && columns[0] == "*" {
+        get_columns(db, table_name)
+    } else {
+        columns.clone()
+    };
+    
+    rows.push(columns.iter().map(|c| c.clone()).collect::<Vec<String>>()); // Add header row
+
     let column_names = columns.join(", ");
     let mut statement = db.prepare(&format!("SELECT {} FROM {}", column_names, table_name)).unwrap();
     
