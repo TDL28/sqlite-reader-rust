@@ -40,6 +40,7 @@ fn main() {
     }
 
     if help {
+        print_usage();
         std::process::exit(0);
     }
     if db_path.is_empty() {
