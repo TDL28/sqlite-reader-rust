@@ -14,7 +14,6 @@ Options:
   -t, --table <name>    Table name to read
   -a, --action <name>   Action to perform (list)
   -c, --columns <cols>  Comma separated list of columns to read
-  -o, --output <file>   Output file to write results to
   -h, --help            Show this help message
 ```
 
