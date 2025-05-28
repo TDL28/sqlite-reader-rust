@@ -23,7 +23,7 @@ Options:
 To list all the tables in database.db:
 
 ```cmd
-$ reader -f database.db -a list
+$ reader -f database.db -l
 Tables in database.db
 ----------------------------------
 users
@@ -35,7 +35,7 @@ invoices
 To list all the columns in the `users` table
 
 ```cmd
-$ reader -f database.db -t users -a list
+$ reader -f database.db -t users -l
 Columns in users
 ----------------------------------
 _id
@@ -66,13 +66,9 @@ _id,email
 ```
 ---
 
-While the output is CSV formatted, *there is no built in escaping of `,` characters in the database contents*, so if your table cells contain comma values, the output will not work correctly
+While the output is CSV formatted, *only simple escaping of `,` characters happens in the database contents*, so if your table cells contain comma values, the output may not work correctly
 
-To direct reader output to a CSV, either pipe the output into a file:
+To direct reader output to a CSV, pipe the output into a file:
 ```cmd
 $ reader -f database.db -t users > output.csv
-```
-or specify an output file with the `-o` flag
-```cmd
-$ reader -f database.db -t users -o output.csv
 ```
